@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cairn</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<script>try { var t = localStorage.getItem('nexus.theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect x=%222%22 y=%222%22 width=%2260%22 height=%2260%22 rx=%2214%22 fill=%22%230d1413%22 stroke=%22%233a4a47%22 stroke-width=%222%22/%3E%3Cpath d=%22M15 12Q17 48 53 50%22 fill=%22none%22 stroke=%22%23f2a93b%22 stroke-width=%225%22 stroke-linecap=%22round%22/%3E%3Ccircle cx=%2224.5%22 cy=%2239.5%22 r=%227.5%22 fill=%22%230d1413%22 stroke=%22%23f4f1ea%22 stroke-width=%223.5%22/%3E%3Ccircle cx=%2224.5%22 cy=%2239.5%22 r=%222.6%22 fill=%22%23f2a93b%22/%3E%3C/svg%3E">
+</head>
+<body>
+<div id="app">
+<header class="top">
+<button class="mark" id="nav-home"><img src="assets/icon.svg" alt="" width="24" height="24"><b>Cairn</b></button>
+<nav class="top-nav" aria-label="Primary">
+<button data-go="hub" aria-current="page">Hub</button>
+<button data-go="lab">Lab</button>
+<button data-go="routing">Routing</button>
+<button data-go="dashboard">Suite</button>
+<button data-go="methods">Methods</button>
+</nav>
+<div class="sys">
+<span class="status"><i aria-hidden="true"></i><span id="sys-status">Network loaded</span></span>
+<button class="icon-btn" id="btn-theme" aria-label="Theme: system" title="Theme: system"></button>
+</div>
+</header>
+
+<main id="views">
+<section id="hub-view" class="view active">
+<div class="hero">
+<div class="hero-l">
+<p class="eyebrow">Cairn &middot; sustainable sourcing</p>
+<h1 class="hub-title">Choose suppliers and freight on <em>three pillars.</em></h1>
+<p class="lede">An optimisation model for choosing suppliers, order quantities and transport modes on cost, carbon and social score, with a scenario lab that re-solves it live, a routing exercise and a decision suite that shows its results. Real data: 21 manufacturers, 19 solar and wind projects, 20 ports.</p>
+<ul class="hub-cards starts">
+<li class="game-card" data-game="lab"><button class="btn-play" data-game="lab"><span class="mono">Model</span><span class="start-name">Scenario lab<span class="start-sub">Close a sea lane, lose a supplier or price carbon, then re-solve the sourcing model and see what changes.</span></span><span class="mono start-best">Runs <b id="stat-lab">0</b></span></button></li>
+<li class="game-card" data-game="routing"><button class="btn-play" data-game="routing"><span class="mono lvl-medium">Medium</span><span class="start-name">Fleet routing<span class="start-sub">Open depots and route trucks in the UAE, the Benelux or the Yangtze Delta, then see how close you came to the optimal plan.</span></span><span class="mono start-best">Best <b id="stat-routing">--</b></span></button></li>
+<li class="game-card" data-game="dashboard"><button class="btn-play" data-game="dashboard"><span class="mono">Ref</span><span class="start-name">Decision suite<span class="start-sub">Supplier rankings, the model&#39;s cost and carbon trade-off front, routes and forecasts.</span></span><span class="mono start-best">Open</span></button></li>
+</ul>
+</div>
+<div class="hero-r">
+<figure class="lead-figure">
+<video class="frame" id="intro-video" muted loop playsinline autoplay preload="metadata" aria-label="Short loop of the supply network: 19 solar and wind projects light up, the model picks a supplier on its TOPSIS score, freight flows on a plan from the cost and carbon front, then trucks are routed between UAE depots and sites"></video>
+<figcaption><span>The network in a few seconds: demand, suppliers, freight, routing</span><button class="fig-btn" id="intro-toggle" aria-controls="intro-video" aria-pressed="false">Pause</button></figcaption>
+</figure>
+<dl class="kv hub-stats" id="hub-stats">
+<div><dt>Routing plans scored</dt><dd class="mono" id="stat-played">0</dd></div>
+<div><dt>Suppliers</dt><dd class="mono">21</dd></div>
+<div><dt>Projects</dt><dd class="mono">19</dd></div>
+<div><dt>Ports</dt><dd class="mono">20</dd></div>
+</dl>
+<section class="methods" aria-labelledby="methods-h">
+<p class="eyebrow" id="methods-h">Methods in play</p>
+<dl class="kv methods-kv">
+<div><dt>Integrated model</dt><dd>Supplier selection, order allocation and transport mode choice as a mixed-integer program; an epsilon-constraint front of cost against CO2; TOPSIS picks the balanced plan</dd></div>
+<div><dt>Scenarios and risk</dt><dd>The lab re-solves the model for disruptions, carbon prices and demand shifts; a two-stage stochastic model prices robustness (VSS, CVaR)</dd></div>
+<div><dt>Supplier ranking</dt><dd>TOPSIS on cost, CO2e, transit time and social score; AHP pairwise weighting in the suite</dd></div>
+<div><dt>Emission factors</dt><dd>DESNZ 2024 well-to-wheel freight factors for road, rail and sea; electric trucks use the grid intensity of the country they run in</dd></div>
+<div><dt>Vehicle routing</dt><dd>Depot choice and fleet mix in three regions, scored against every feasible plan and its Pareto front</dd></div>
+<div><dt>Three pillars</dt><dd>Economic, environmental and social scores in the model, the lab, the routing exercise and the suite</dd></div>
+</dl>
+<p class="methods-link"><a href="#methods" id="methods-open">Read the methods report</a> for the formulation, data sources and limitations.</p>
+</section>
+</div>
+</div>
+</section>
+
+<section id="lab-view" class="view">
+<div class="view-hud">
+<button class="hud-back" id="lab-back">Back to hub</button>
+<div class="hud-item"><span class="hud-label">Scenario</span><span class="hud-value" id="lab-scn-name">Baseline</span></div>
+<div class="hud-item"><span class="hud-label">Cost a year</span><span class="hud-value" id="lab-hud-cost">--</span></div>
+<div class="hud-item"><span class="hud-label">CO2e a year</span><span class="hud-value" id="lab-hud-co2">--</span></div>
+<div class="hud-item"><span class="hud-label">Social</span><span class="hud-value" id="lab-hud-soc">--</span></div>
+<button class="hud-tutorial-btn" id="lab-help">How to use</button>
+</div>
+<div class="rt-layout lab-layout">
+<div class="rt-panel" id="lab-controls">
+<p class="rt-brief">Change the world, then re-solve the full sourcing model: supplier choice, tonnages and transport modes for 19 real renewable projects.</p>
+<h3 class="rt-h">Presets</h3>
+<div class="rt-chips" id="lab-presets"></div>
+<h3 class="rt-h">Plan weights</h3>
+<div class="rt-weights">
+<label for="lab-w-eco">Economic</label><input type="range" id="lab-w-eco" min="0" max="100" step="1"><span class="mono" id="lab-w-eco-v"></span>
+<label for="lab-w-env">Environmental</label><input type="range" id="lab-w-env" min="0" max="100" step="1"><span class="mono" id="lab-w-env-v"></span>
+<label for="lab-w-soc">Social</label><input type="range" id="lab-w-soc" min="0" max="100" step="1"><span class="mono" id="lab-w-soc-v"></span>
+</div>
+<h3 class="rt-h">Carbon price</h3>
+<div class="rt-weights"><label for="lab-carbon">USD per t CO2e</label><input type="range" id="lab-carbon" min="0" max="300" step="10"><span class="mono" id="lab-carbon-v"></span></div>
+<h3 class="rt-h">Demand by region</h3>
+<div class="rt-weights" id="lab-demand"></div>
+<h3 class="rt-h">Sea lanes</h3>
+<label class="rt-dep"><input type="checkbox" id="lab-red"> <span>Red Sea closed (ships go round the Cape)</span></label>
+<label class="rt-dep"><input type="checkbox" id="lab-hormuz"> <span>Strait of Hormuz closed</span></label>
+<h3 class="rt-h">Transport modes</h3>
+<div id="lab-modes"></div>
+<h3 class="rt-h">Suppliers</h3>
+<div id="lab-sups"></div>
+<h3 class="rt-h">Uncertainty</h3>
+<label class="rt-dep"><input type="checkbox" id="lab-stoch"> <span>Plan under uncertainty (20 sampled futures)</span></label>
+<div class="panel-actions"><button class="btn-play" id="lab-solve">Solve</button><button class="btn-secondary" id="lab-reset">Reset to baseline</button></div>
+<p class="lab-status" id="lab-status" aria-live="polite"></p>
+</div>
+<div class="lab-results" id="lab-results">
+<div class="lab-empty" id="lab-empty">
+<p id="lab-offline" class="lab-warn" hidden>The Scenario lab runs the optimisation model on this computer, so it needs the local server. Open Cairn with its shortcut, or run <code>python run.py</code>, and come back here. The Decision suite shows the saved baseline results meanwhile.</p>
+<p class="muted">Results appear here after the first solve.</p>
+</div>
+<div id="lab-out" hidden>
+<div class="rt-scns" role="group" aria-label="Plan to compare"><button class="rt-scn-btn lab-view-btn" data-v="cheapest">Cheapest plan</button><button class="rt-scn-btn lab-view-btn" data-v="balanced">Balanced plan (TOPSIS)</button></div>
+<dl class="kv lab-kpis" id="lab-kpis"></dl>
+<div class="lab-grid">
+<figure class="lab-fig">
+<figcaption class="rt-h">Cost against CO2e: every efficient plan</figcaption>
+<svg id="lab-front" viewBox="0 0 560 300" role="img" aria-label="Trade-off front of the scenario against the baseline"></svg>
+<div class="chart-key"><span><i class="key-line lab-key-scn"></i>Scenario</span><span><i class="key-line lab-key-base"></i>Baseline</span><span><i class="lab-key-pick"></i>Compared plan</span></div>
+</figure>
+<div>
+<h3 class="rt-h">What changed</h3>
+<div class="lab-changes" id="lab-changes"></div>
+<h3 class="rt-h">Pillar scores</h3>
+<table class="cmp-table" id="lab-pillars"></table>
+<p class="muted lab-note">Each pillar is scored from 0 to 100 between the worst and best baseline plans, so scenario and baseline share one scale.</p>
+</div>
+</div>
+<section class="lab-risk" id="lab-risk" hidden aria-labelledby="lab-risk-h">
+<h3 class="rt-h" id="lab-risk-h">Plan under uncertainty</h3>
+<p class="muted">Contracts are fixed first; tonnages and modes then adapt to each of 20 sampled futures with demand swings, supplier outages and sea-lane closures. Unserved demand is charged at ten times the product price.</p>
+<dl class="kv lab-kpis" id="lab-risk-kpis"></dl>
+<svg id="lab-hist" viewBox="0 0 560 160" role="img" aria-label="Cost across the sampled futures for the robust plan and the mean-demand plan"></svg>
+<div class="chart-key"><span><i class="key-bar lab-key-rp"></i>Robust plan</span><span><i class="key-bar lab-key-ev"></i>Mean-demand plan</span></div>
+<h3 class="rt-h">Projects most often short</h3>
+<ul class="lab-list" id="lab-risk-hubs"></ul>
+</section>
+<details class="rt-details lab-alloc-wrap"><summary>Allocation: <span id="lab-alloc-n"></span></summary><div class="lab-scroll"><table class="cmp-table" id="lab-alloc"></table></div></details>
+<div class="panel-actions"><button class="btn-secondary" id="lab-csv">Export allocation (CSV)</button></div>
+<h3 class="rt-h">Compare scenarios</h3>
+<div class="lab-save"><label for="lab-save-name" class="sr-only">Scenario name</label><input type="text" id="lab-save-name" maxlength="40" placeholder="Name this scenario"><button class="btn-secondary" id="lab-save">Save</button></div>
+<div class="lab-scroll"><table class="cmp-table" id="lab-saved"></table></div>
+</div>
+</div>
+</div>
+<div id="lab-tutorial" class="overlay hidden">
+<div class="overlay-box tutorial-box" role="dialog" aria-modal="true" aria-labelledby="lab-tut-title">
+<div class="tutorial-header"><h2 id="lab-tut-title">How to use the Scenario lab</h2><button class="panel-close" id="lab-tut-close" aria-label="Close guide">&times;</button></div>
+<div class="tutorial-body-scroll">
+<div class="tutorial-steps">
+<div class="tutorial-step"><div class="step-num">1</div><div class="step-body"><h3>Start from the baseline</h3><p>The lab first solves today's network: 21 real manufacturers supplying modules, steel, aluminium, copper cable and turbines to 19 real solar and wind projects. Each solve builds the whole cost and CO2e trade-off front.</p></div></div>
+<div class="tutorial-step"><div class="step-num">2</div><div class="step-body"><h3>Change the world</h3><p>Pick a preset or change anything yourself: close a sea lane, switch suppliers or transport modes off, scale demand by region or add a carbon price. Then press Solve.</p></div></div>
+<div class="tutorial-step"><div class="step-num">3</div><div class="step-body"><h3>Read what changed</h3><p>The chart shows the new front over the baseline in grey. Compare the cheapest plan, which is what a market buyer would pick and what a carbon price acts on, or the balanced plan chosen by TOPSIS with your weights. The list explains which suppliers, tonnages and modes moved.</p></div></div>
+<div class="tutorial-step"><div class="step-num">4</div><div class="step-body"><h3>Plan under uncertainty and compare</h3><p>Turn on Plan under uncertainty to fix contracts before demand and disruptions are known, and see what that robustness is worth. Save scenarios to compare them side by side, or export the allocation as CSV.</p></div></div>
+</div>
+</div>
+<div class="tutorial-footer"><button class="btn-secondary" id="lab-tut-demo">Watch demo</button><button class="btn-play" id="lab-tut-start">Start</button></div>
+</div>
+</div>
+</section>
+
+<section id="routing-view" class="view">
+<div class="view-hud">
+<button class="hud-back" id="rt-back">Back to hub</button>
+<div class="hud-item"><span class="hud-label">Scenario</span><span class="hud-value" id="rt-scn-name">--</span></div>
+<div class="hud-item"><span class="hud-label">Cost</span><span class="hud-value" id="rt-hud-cost">$0</span></div>
+<div class="hud-item"><span class="hud-label">CO2</span><span class="hud-value" id="rt-hud-co2">0 kg</span></div>
+<div class="hud-item"><span class="hud-label">Urban diesel</span><span class="hud-value" id="rt-hud-ot">0 km</span></div>
+<div class="hud-item"><span class="hud-label">Score</span><span class="hud-value" id="rt-hud-score">--</span></div>
+<button class="hud-tutorial-btn" id="rt-help">How to play</button>
+</div>
+<div class="rt-layout">
+<div class="rt-panel">
+<p class="rt-brief" id="rt-brief"></p>
+<div class="rt-scns" role="group" aria-label="Region"><button class="rt-reg-btn" data-reg="0">UAE</button><button class="rt-reg-btn" data-reg="1">Benelux</button><button class="rt-reg-btn" data-reg="2">Yangtze Delta</button></div>
+<div class="rt-scns" role="group" aria-label="Scenario"><button class="rt-scn-btn" data-scn="0">Standard</button><button class="rt-scn-btn" data-scn="1">Peak</button><button class="rt-scn-btn" data-scn="2">EV mandate</button></div>
+<h3 class="rt-h">Your weights</h3>
+<div class="rt-weights">
+<label for="rt-w-eco">Economic</label><input type="range" id="rt-w-eco" min="0" max="100" step="1"><span class="mono" id="rt-w-eco-v"></span>
+<label for="rt-w-env">Environmental</label><input type="range" id="rt-w-env" min="0" max="100" step="1"><span class="mono" id="rt-w-env-v"></span>
+<label for="rt-w-soc">Social</label><input type="range" id="rt-w-soc" min="0" max="100" step="1"><span class="mono" id="rt-w-soc-v"></span>
+</div>
+<h3 class="rt-h">Depots</h3>
+<div id="rt-depots"></div>
+<h3 class="rt-h">Fleet</h3>
+<div id="rt-fleet"></div>
+<h3 class="rt-h">Sites for <span id="rt-active-label">D1</span></h3>
+<div class="rt-chips" id="rt-chips"></div>
+<ul class="rt-errs" id="rt-errs" aria-live="polite"></ul>
+<div class="panel-actions"><button class="btn-play" id="rt-score" disabled>Score plan</button><button class="btn-secondary" id="rt-clear">Clear routes</button></div>
+<details class="rt-details"><summary>Model assumptions</summary><ul id="rt-assump"></ul></details>
+</div>
+<div class="rt-map-wrap">
+<svg id="rt-map" viewBox="0 0 640 560" preserveAspectRatio="xMidYMid meet" aria-label="UAE chart with depots, project sites and your truck routes">
+<g id="rt-base"></g><g id="rt-routes"></g><g id="rt-nodes"></g>
+</svg>
+<ul class="rt-legend" aria-label="Chart legend">
+<li><svg viewBox="0 0 16 16" aria-hidden="true"><polygon points="8,2 14,8 8,14 2,8" fill="var(--text-2)"/></svg>Open depot</li>
+<li><svg viewBox="0 0 16 16" aria-hidden="true"><polygon points="8,2 14,8 8,14 2,8" fill="var(--bg)" stroke="var(--muted)" stroke-width="1.5"/></svg>Closed depot</li>
+<li><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="var(--err)"/></svg>Site not on a route</li>
+<li><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="var(--ok)"/></svg>Site served</li>
+<li><svg viewBox="0 0 22 16" aria-hidden="true"><line x1="1" y1="8" x2="21" y2="8" stroke="var(--accent)" stroke-width="2.5"/></svg>Electric</li>
+<li><svg viewBox="0 0 22 16" aria-hidden="true"><line x1="1" y1="8" x2="21" y2="8" stroke="var(--accent)" stroke-width="2.5" stroke-dasharray="5 3"/></svg>Diesel</li>
+<li><svg viewBox="0 0 22 16" aria-hidden="true"><line x1="1" y1="8" x2="21" y2="8" stroke="var(--ok)" stroke-width="1.6" stroke-dasharray="2 3"/></svg>Optimizer plan</li>
+</ul>
+<p class="rt-map-note" id="rt-map-note">Schematic chart of Dubai, Sharjah and Abu Dhabi: true positions on a half degree grid, coastline omitted. Click a site to add it to the selected truck.</p>
+</div>
+</div>
+<div id="rt-result" class="overlay hidden"><div class="overlay-box rt-result-box" role="dialog" aria-modal="true" aria-label="Plan score"><div id="rt-result-content"></div></div></div>
+<div id="rt-tutorial" class="overlay hidden">
+<div class="overlay-box tutorial-box" role="dialog" aria-modal="true" aria-labelledby="rt-tut-title">
+<div class="tutorial-header"><h2 id="rt-tut-title">How to play Fleet routing</h2><button class="panel-close" id="rt-tut-close" aria-label="Close tutorial">&times;</button></div>
+<div class="tutorial-body-scroll">
+<div class="tutorial-steps">
+<div class="tutorial-step"><div class="step-num">1</div><div class="step-body"><h3>Set your weights</h3><p>Decide how much cost, carbon and community impact matter to you. Community impact is diesel truck-km driven through residential areas. The score compares your plan with the best plan for these weights, so the same routes can score differently for different priorities.</p></div></div>
+<div class="tutorial-step"><div class="step-num">2</div><div class="step-body"><h3>Pick a region, then open depots</h3><p>Choose the UAE, the Benelux North Sea coast or the Yangtze River Delta. Each has two depots with different daily costs and positions; in the UAE, Jebel Ali is close to the Abu Dhabi bound sites but costs more, while Hamriyah is cheaper but sits in a residential area. You pay for every depot you open.</p></div></div>
+<div class="tutorial-step"><div class="step-num">3</div><div class="step-body"><h3>Route the trucks</h3><p>Pick a truck, choose its depot, then click sites on the chart or in the list, in delivery order. Diesel trucks carry more and cost less; electric trucks emit far less, count zero residential diesel km, but have a 250 km range. A truck that breaks capacity, range or the 10 hour shift is flagged in red.</p></div></div>
+<div class="tutorial-step"><div class="step-num">4</div><div class="step-body"><h3>Score against the optimizer</h3><p>Once every site is on a feasible route, score the plan. The optimizer enumerates every feasible plan, finds the Pareto-optimal ones and picks the best for your weights. You can then overlay its routes on the chart.</p></div></div>
+</div>
+</div>
+<div class="tutorial-footer"><button class="btn-secondary" id="rt-tut-demo">Watch demo</button><button class="btn-play" id="rt-tut-start">Start planning</button></div>
+</div>
+</div>
+</section>
+
+<section id="methods-view" class="view">
+<div class="doc">
+<aside class="doc-toc" aria-label="Report sections">
+<p class="eyebrow">Methods report</p>
+<nav id="doc-toc"></nav>
+<a class="doc-src" href="docs/METHODS.md" download>Download as Markdown</a>
+</aside>
+<article class="doc-body" id="doc-body" aria-live="polite"><p>Loading the report.</p></article>
+</div>
+</section>
+
+<section id="dashboard-view" class="view">
+<div class="dashboard-hud">
+<button class="hud-back" id="dashboard-back">Back to hub</button>
+<div class="hud-item">
+<span class="hud-label">Module</span>
+<span class="hud-value">Decision suite</span>
+</div>
+</div>
+<iframe id="dashboard-frame" data-src="./greenchainml/index.html" title="Decision suite"></iframe>
+</section>
+</main>
+
+
+</div>
+<div id="demo-overlay" class="overlay demo-overlay hidden">
+<div class="overlay-box demo-box" role="dialog" aria-modal="true" aria-labelledby="demo-title">
+<div class="tutorial-header"><h2 id="demo-title">Demo</h2><button class="panel-close" id="demo-close" aria-label="Close demo">&times;</button></div>
+<div class="dv" id="dv">
+<video id="demo-video" muted playsinline preload="none"></video>
+<div class="dv-bar">
+<button class="dv-btn" id="dv-play" aria-label="Pause"></button>
+<input type="range" class="dv-seek" id="dv-seek" min="0" max="1000" step="1" value="0" aria-label="Seek">
+<span class="dv-time" id="dv-time">0:00 / 0:00</span>
+<button class="dv-btn" id="dv-full" aria-label="Full screen"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 8V3h5M12 3h5v5M17 12v5h-5M8 17H3v-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</div>
+</div>
+</div>
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script src="routing.js"></script>
+<script src="lab.js"></script>
+</body>
+</html>

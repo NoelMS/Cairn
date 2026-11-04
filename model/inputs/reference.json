@@ -1,0 +1,160 @@
+{
+ "bibliography": {
+  "S_JRC": "Carrara S., Alves Dias P., Plazzotta B., Pavel C. (2020). Raw materials demand for wind and solar PV technologies in the transition towards a decarbonised energy system. JRC, EUR 30095 EN, doi:10.2760/160859.",
+  "S_DESNZ": "UK Department for Energy Security and Net Zero (2024). Greenhouse gas reporting: conversion factors 2024, flat file v1.1.",
+  "S_WB": "World Bank (2025). Commodity Markets Outlook, historical data, annual prices (nominal), 2024.",
+  "S_ECB": "European Central Bank. Euro foreign exchange reference rates, US dollar, 2024 annual average 1.0824.",
+  "S_OPIS": "OPIS Solar Weekly (July 2024). Chinese Module Marker, TOPCon, FOB China, USD 0.100/W.",
+  "S_NREL": "NREL (2025). Winter 2025 Solar Industry Update. Average US module price Q3 2024, USD 0.29/Wdc.",
+  "S_STEELORBIS": "SteelOrbis. Hot rolled coil annual averages 2024: ex-China SS400 FOB USD 513.2/t; EU domestic ex-works EUR 641.68/t.",
+  "S_VESTAS_FY24": "Vestas Wind Systems (5 Feb 2025). Full year 2024 investor presentation: ASP of order intake EUR 1.18m/MW in Q4 2024 (p.6); revenue EUR 17.3bn; Scope 1+2 0.105 Mt CO2e; TRIR 3.0.",
+  "S_ICA": "International Copper Association (2023). Copper Environmental Profile, Global, Table 4: climate change 3,965 kg CO2e per tonne of copper cathode.",
+  "S_YUAN": "Yuan et al. (2024). Carbon footprint of China's PERC modules: 412 kg CO2e/kWp (bifacial) and 517 (monofacial) with the national average grid.",
+  "S_EPEAT": "Global Electronics Council / First Solar (4 Jun 2024). First Solar Series 6 Plus and Series 7 TR1 receive EPEAT Climate+ (threshold 400 kg CO2e/kWp or less).",
+  "S_SHU": "Murphy L., Elimae N. (2021). In Broad Daylight: Uyghur Forced Labour and Global Solar Supply Chains. Sheffield Hallam University, Helena Kennedy Centre for International Justice.",
+  "S_UNGC": "UN Global Compact participant directory (unglobalcompact.org), checked 18 Oct 2026.",
+  "S_ICCT": "ICCT (2025). Real-world performance of battery electric tractor-trailers in European fleets: 0.92 to 1.50 kWh/km.",
+  "S_EMBER": "Ember, carbon intensity of electricity generation by country, latest year, via Our World in Data energy dataset (owid-energy-data.csv).",
+  "S_EGA24": "Emirates Global Aluminium (2025). 2024 Sustainability Report.",
+  "S_SSAB24": "SSAB (2025). Annual Report 2024.",
+  "S_EMSTEEL25": "EMSTEEL (2026). Sustainability Report 2025.",
+  "S_MAADEN24": "Ma'aden (2025). Sustainability Report 2024.",
+  "S_HYDRO24": "Norsk Hydro (2025). Integrated Annual Report 2024; ISO 45001:2018 certificate, Hydro Aluminium Metal.",
+  "S_TATANL25": "Tata Steel Nederland (2025). Annual Report and Accounts 2024-2025.",
+  "S_PRYSMIAN": "Prysmian. Health and Safety (2024 OSHA-based LTI frequency 1.07); end-2023 ISO 45001 certified plants 75%.",
+  "S_JINKO": "JinkoSolar. ESG: production safety management (85.71% of operating bases ISO 45001 certified).",
+  "S_LONGI": "LONGi 2024 Sustainability Report as reported by enerad.pl (all facilities ISO 45001 and ISO 37301 certified; secondary source).",
+  "S_TRINA": "Trinasolar (2025). 2024 Sustainability Report press release (SA8000 certification).",
+  "S_FSLR": "First Solar (2024). Sustainability Report 2024 (RBA Validated Assessment Program, Platinum).",
+  "S_SIEMENS_E": "Siemens Energy (2024). Sustainability Report 2024, ESG performance: LTIFR 1.27 (group, FY2024).",
+  "S_GEV": "GE Vernova (2025). 2024 Sustainability Performance Data: Scope 1+2 market-based 428,213 t CO2e; 2024 Form 10-K revenue USD 34.9bn.",
+  "S_PROJECTS": "Project capacities from developer and trade-press reports listed per project."
+ },
+ "prices": {
+  "modules_cn": {
+   "usd_per_w": 0.1,
+   "src": "S_OPIS"
+  },
+  "modules_us": {
+   "usd_per_w": 0.29,
+   "src": "S_NREL"
+  },
+  "steel_asia": {
+   "usd_per_t": 513.2,
+   "src": "S_STEELORBIS"
+  },
+  "steel_eu": {
+   "usd_per_t": 694.55,
+   "src": "S_STEELORBIS, S_ECB"
+  },
+  "aluminium": {
+   "usd_per_t": 2419.02,
+   "src": "S_WB"
+  },
+  "copper": {
+   "usd_per_t": 9142.14,
+   "src": "S_WB"
+  },
+  "turbine": {
+   "usd_per_mw": 1277232,
+   "src": "S_VESTAS_FY24, S_ECB"
+  }
+ },
+ "material_t_per_mw": {
+  "pv": {
+   "modules": 59.0,
+   "steel": 67.9,
+   "aluminium": 7.5,
+   "copper": 4.6,
+   "note": "modules = glass 46.4 + plastic 8.6 + silicon 4.0 t/MW",
+   "src": "S_JRC printed p.36"
+  },
+  "wind": {
+   "turbine": 8.0,
+   "steel": 119.5,
+   "aluminium": 1.05,
+   "copper": 2.1,
+   "note": "turbine OEM scope proxied by blade composites 8 t/MW; steel and aluminium are range midpoints; copper is the median",
+   "src": "S_JRC printed pp.21-22"
+  }
+ },
+ "transport": {
+  "ttw_kg_per_tkm": {
+   "road_diesel": 0.09752,
+   "rail": 0.02779,
+   "sea_container": 0.01612
+  },
+  "wtt_kg_per_tkm": {
+   "road_diesel": 0.02359,
+   "rail": 0.00691,
+   "sea_container": 0.00365
+  },
+  "rows": {
+   "road_diesel": [
+    "27_304_3140_14_1",
+    "28_907_3140_14_1"
+   ],
+   "rail": [
+    "27_315_3151_14_1",
+    "28_911_3151_14_1"
+   ],
+   "sea_container": [
+    "27_320_3235_14_1",
+    "28_916_3235_14_1"
+   ]
+  },
+  "hgv_per_km": {
+   "ttw": 0.87296,
+   "wtt": 0.21154,
+   "rows": [
+    "27_304_3140_4_1",
+    "28_907_3140_4_1"
+   ]
+  },
+  "electricity_uk": {
+   "generation": 0.20705,
+   "td_losses": 0.0183,
+   "rows": [
+    "30_400_4000_5_1",
+    "13_402_4000_5_1"
+   ]
+  },
+  "bev": {
+   "kwh_per_km": 1.2,
+   "kwh_src": "S_ICCT (midpoint of 0.92 to 1.50)",
+   "payload_t": 8.95,
+   "payload_note": "average HGV payload implied by DESNZ: 0.87296 kg/km over 0.09752 kg/tkm"
+  },
+  "src": "S_DESNZ"
+ },
+ "grid_g_per_kwh": {
+  "UAE": 467.51,
+  "Saudi Arabia": 691.95,
+  "Qatar": 581.52,
+  "Germany": 329.65,
+  "Netherlands": 253.56,
+  "Denmark": 114.41,
+  "Spain": 153.6,
+  "Sweden": 35.26,
+  "Norway": 28.11,
+  "China": 525.34,
+  "India": 670.13,
+  "South Korea": 417.06,
+  "Japan": 477.26,
+  "USA": 384.4,
+  "Brazil": 109.95,
+  "Chile": 289.49,
+  "Egypt": 563.23,
+  "Kenya": 95.44,
+  "Morocco": 596.4,
+  "Italy": 284.78,
+  "France": 41.44,
+  "UK": 217.41
+ },
+ "grid_src": "S_EMBER",
+ "assumptions": {
+  "build_years": 3,
+  "max_share_per_supplier": 0.4,
+  "eur_usd_2024": 1.0824
+ }
+}

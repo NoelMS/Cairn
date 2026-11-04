@@ -1,0 +1,20 @@
+const { chromium } = require('playwright-core');
+(async () => {
+  const b = await chromium.launch({ channel: 'chrome', headless: true });
+  const p = await b.newPage({ viewport: { width: 1440, height: 900 } });
+  const errs = []; p.on('pageerror', e => errs.push(e.message));
+  await p.goto('http://127.0.0.1:8765/', { waitUntil: 'load' });
+  await p.evaluate(() => { const v = document.querySelector('#intro-video'); v.muted = true; return v.play().catch(() => {}); });
+  await p.waitForTimeout(4000);
+  const t1 = await p.evaluate(() => document.querySelector('#intro-video').currentTime);
+  await p.evaluate(() => { const d = document.documentElement; const src = document.querySelector('#intro-video').dataset.want; d.dataset.theme = src === 'intro-light' ? 'dark' : 'light'; window.nexusPickIntro(); });
+  await p.waitForTimeout(1500);
+  const r = await p.evaluate(() => { const v = document.querySelector('#intro-video'); return { src: v.dataset.want, blob: v.src.slice(0,5), t: v.currentTime }; });
+  const vidOk = r.t >= t1 - 0.3;
+  console.log('video', vidOk ? 'ok' : 'FAIL', t1.toFixed(2), JSON.stringify(r));
+  const plex = await p.evaluate(() => [...document.querySelectorAll('*')].filter(e => /Plex|monospace/i.test(getComputedStyle(e).fontFamily)).length);
+  console.log('plex/monospace elements', plex);
+  console.log('errors', JSON.stringify(errs));
+  console.log(vidOk && !plex && !errs.length ? 'CHECK3 OK' : 'CHECK3 FAIL');
+  await b.close();
+})();

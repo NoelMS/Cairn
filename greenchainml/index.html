@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Decision suite</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <script>try { var t = localStorage.getItem('nexus.theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect x=%222%22 y=%222%22 width=%2260%22 height=%2260%22 rx=%2214%22 fill=%22%230d1413%22 stroke=%22%233a4a47%22 stroke-width=%222%22/%3E%3Cpath d=%22M15 12Q17 48 53 50%22 fill=%22none%22 stroke=%22%23f2a93b%22 stroke-width=%225%22 stroke-linecap=%22round%22/%3E%3Ccircle cx=%2224.5%22 cy=%2239.5%22 r=%227.5%22 fill=%22%230d1413%22 stroke=%22%23f4f1ea%22 stroke-width=%223.5%22/%3E%3Ccircle cx=%2224.5%22 cy=%2239.5%22 r=%222.6%22 fill=%22%23f2a93b%22/%3E%3C/svg%3E">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+</head>
+<body>
+
+<div id="chart-tooltip" class="chart-tooltip"></div>
+
+<div id="port-modal" class="modal-overlay">
+  <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="port-modal-title">
+    <div class="modal-header">
+      <div>
+        <p class="modal-badge" id="port-modal-badge">Maritime hub</p>
+        <h2 class="modal-title" id="port-modal-title">Port</h2>
+      </div>
+      <button id="port-modal-close" class="modal-close-btn" aria-label="Close">Close</button>
+    </div>
+    <div class="modal-body">
+      <dl class="modal-meta-grid">
+        <div class="modal-meta-item"><dt class="m-lbl">Sustained wind</dt><dd class="m-val" id="port-modal-wind">0.0 km/h</dd></div>
+        <div class="modal-meta-item"><dt class="m-lbl">Temperature</dt><dd class="m-val" id="port-modal-temp">0.0 deg C</dd></div>
+        <div class="modal-meta-item"><dt class="m-lbl">Delay risk</dt><dd class="m-val" id="port-modal-risk">Low</dd></div>
+        <div class="modal-meta-item"><dt class="m-lbl">Terminal status</dt><dd class="m-val" id="port-modal-status">Operational</dd></div>
+        <div class="modal-meta-item"><dt class="m-lbl">Position</dt><dd class="m-val" id="port-modal-coords">00.00 N, 00.00 E</dd></div>
+        <div class="modal-meta-item"><dt class="m-lbl">Transit buffer advice</dt><dd class="m-val" id="port-modal-buffer">Nominal</dd></div>
+      </dl>
+      <div class="modal-routes-section">
+        <h3 class="m-section-lbl">Connected freight corridors</h3>
+        <div class="port-routes-list" id="port-modal-routes"></div>
+      </div>
+      <div class="modal-actions">
+        <button id="port-modal-btn-network" class="primary-btn">Show corridors on the network map</button>
+        <button id="port-modal-btn-close" class="secondary-btn">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="app-container">
+  <header class="top-navbar">
+    <nav class="top-nav-links" role="tablist" aria-label="Suite sections">
+      <button class="nav-item active" data-target="page-overview" role="tab" aria-selected="true">Overview</button>
+      <button class="nav-item" data-target="page-suppliers" role="tab" aria-selected="false">Suppliers</button>
+      <button class="nav-item" data-target="page-network" role="tab" aria-selected="false">Network</button>
+      <button class="nav-item" data-target="page-forecast" role="tab" aria-selected="false">Forecast</button>
+      <button class="nav-item" data-target="page-scenarios" role="tab" aria-selected="false">Scenarios</button>
+    </nav>
+    <div class="navbar-actions-group">
+      <button id="btn-info-level" class="secondary-btn">Detail: full</button>
+      <button id="btn-print-report" class="secondary-btn">Print report</button>
+    </div>
+  </header>
+
+  <div class="workbench-filter-bar">
+    <span class="filter-label">Region</span>
+    <button id="btn-multi-toggle" class="secondary-btn btn-small" title="Switch between one region and several regions">Multi-Select: OFF</button>
+    <button id="btn-scroll-left" aria-label="Scroll regions left" class="scroll-arrow-btn">&lt;</button>
+    <div class="filter-scroll" id="filter-pills-container"></div>
+    <button id="btn-scroll-right" aria-label="Scroll regions right" class="scroll-arrow-btn">&gt;</button>
+  </div>
+
+  <main class="content-scroll">
+    <section class="page-view active" id="page-overview">
+      <div class="stat-grid">
+        <div class="stat-card">
+          <span class="stat-card-title">Active suppliers</span>
+          <span class="stat-card-val" id="kpi-suppliers">0</span>
+          <svg class="stat-sparkline" id="spark-suppliers" viewBox="0 0 80 26" aria-hidden="true"></svg>
+          <span class="stat-card-sub">Suppliers in the dataset</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-card-title">Demand hubs</span>
+          <span class="stat-card-val" id="kpi-hubs">0</span>
+          <svg class="stat-sparkline" id="spark-hubs" viewBox="0 0 80 26" aria-hidden="true"></svg>
+          <span class="stat-card-sub">Renewable projects with demand</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-card-title">Freight routes</span>
+          <span class="stat-card-val" id="kpi-routes">0</span>
+          <svg class="stat-sparkline" id="spark-routes" viewBox="0 0 80 26" aria-hidden="true"></svg>
+          <span class="stat-card-sub">Routes used by the balanced plan</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-card-title">Scope 3 abatement</span>
+          <span class="stat-card-val"><span id="kpi-co2">0</span> <span class="unit">tCO2e</span></span>
+          <svg class="stat-sparkline" id="spark-co2" viewBox="0 0 80 26" aria-hidden="true"></svg>
+          <span class="stat-card-sub">Balanced plan against the cheapest plan</span>
+        </div>
+      </div>
+
+      <div class="operations-deck">
+        <section class="surface-panel" aria-labelledby="h-esg">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title" id="h-esg">ESG pillars</h2>
+              <p class="panel-sub">Balanced plan scored on each pillar; the cheapest plan is the benchmark.</p>
+            </div>
+          </div>
+          <div class="esg-layout">
+            <div class="esg-chart-box" id="esg-visual"></div>
+            <div class="esg-legend-box" id="esg-legend"></div>
+          </div>
+        </section>
+
+        <section class="surface-panel" aria-labelledby="h-ports">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title" id="h-ports">Port conditions</h2>
+              <p class="panel-sub">Weather at the last data refresh, with delay risk derived from wind speed. Context only; the optimisation model does not use it. Select a port for details.</p>
+            </div>
+            <button id="refresh-telemetry-btn" class="secondary-btn btn-small">Refresh</button>
+          </div>
+          <div class="telemetry-grid" id="telemetry-feed"></div>
+        </section>
+      </div>
+    </section>
+
+    <section class="page-view" id="page-suppliers">
+      <div class="mcdm-workbench">
+        <section class="surface-panel mcdm-rail advanced-panel" aria-labelledby="h-weights">
+          <h2 class="panel-title" id="h-weights">Criteria weights</h2>
+          <p class="panel-sub">Pick a preset or move a weight. TOPSIS scores update at once.</p>
+          <div class="preset-chips-row" id="preset-container">
+            <button class="preset-chip active" data-preset="balanced">Balanced ESG</button>
+            <button class="preset-chip" data-preset="netzero">Net zero first</button>
+            <button class="preset-chip" data-preset="cost">Cost first</button>
+            <button class="preset-chip" data-preset="resilience">Fast delivery</button>
+          </div>
+          <div class="sliders-vertical-stack">
+            <div class="slider-box">
+              <label class="slider-head" for="sl-cost"><span>Cost</span><span id="lbl-w-cost">30%</span></label>
+              <input type="range" min="0" max="80" value="30" class="app-slider" id="sl-cost">
+            </div>
+            <div class="slider-box">
+              <label class="slider-head" for="sl-co2"><span>CO2e</span><span id="lbl-w-co2">30%</span></label>
+              <input type="range" min="0" max="80" value="30" class="app-slider" id="sl-co2">
+            </div>
+            <div class="slider-box">
+              <label class="slider-head" for="sl-time"><span>Transit time</span><span id="lbl-w-time">10%</span></label>
+              <input type="range" min="0" max="80" value="10" class="app-slider" id="sl-time">
+            </div>
+            <div class="slider-box">
+              <label class="slider-head" for="sl-social"><span>Social score</span><span id="lbl-w-social">30%</span></label>
+              <input type="range" min="0" max="80" value="30" class="app-slider" id="sl-social">
+            </div>
+          </div>
+          <button id="btn-reset-weights" class="secondary-btn btn-block">Reset weights</button>
+          <details class="ahp" id="ahp">
+            <summary>Derive weights with AHP</summary>
+            <p class="panel-sub">Compare each pair of criteria on Saaty's 1 to 9 scale. Move a slider toward the criterion that matters more. The weights are the principal eigenvector of the comparison matrix.</p>
+            <div class="ahp-pairs" id="ahp-pairs"></div>
+            <div class="ahp-out" id="ahp-out" aria-live="polite"></div>
+            <button id="btn-ahp-apply" class="primary-btn btn-block">Apply to TOPSIS</button>
+          </details>
+        </section>
+
+        <div class="mcdm-stage">
+          <section class="surface-panel" aria-labelledby="h-rank">
+            <h2 class="panel-title" id="h-rank">TOPSIS ranking</h2>
+            <p class="panel-sub">Closeness to the ideal supplier within its product category, 0 to 100, on price, CO2e, transit time and social score. Bars are grouped by category; the best in each is highlighted.</p>
+            <div class="chart-box" id="rankings-chart"></div>
+          </section>
+
+          <section class="surface-panel advanced-panel" aria-labelledby="h-radar">
+            <div class="panel-header">
+              <div>
+                <h2 class="panel-title" id="h-radar">Criteria profile</h2>
+                <p class="panel-sub">Normalised criteria scores for the selected suppliers.</p>
+              </div>
+              <button id="toggle-compare-btn" class="secondary-btn btn-small">Compare: OFF</button>
+            </div>
+            <div class="chart-box" id="radar-chart"></div>
+          </section>
+        </div>
+      </div>
+
+      <section class="surface-panel table-panel" aria-labelledby="h-dir">
+        <div class="panel-header">
+          <div>
+            <h2 class="panel-title" id="h-dir">Supplier directory</h2>
+            <p class="panel-sub">Clean-tech suppliers with carbon, lead time and ESG tier (illustrative values).</p>
+          </div>
+          <div class="panel-tools">
+            <label class="visually-hidden" for="supplier-search">Search suppliers</label>
+            <input type="search" id="supplier-search" class="table-search-input" placeholder="Supplier, category or country">
+            <button id="export-suppliers-btn" class="secondary-btn btn-small">Export CSV</button>
+          </div>
+        </div>
+        <div class="table-scroll">
+          <table class="app-table" id="supplier-table">
+            <thead>
+              <tr>
+                <th>Rank in category</th><th>Supplier</th><th>Category</th><th>Location</th><th>Price ($/t)</th><th>CO2e (t/t)</th><th>Transit</th><th>Carbon data</th><th>Certifications</th><th>TOPSIS</th><th>Details</th>
+              </tr>
+            </thead>
+            <tbody id="supplier-tbody"></tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+
+    <section class="page-view" id="page-network">
+      <section class="surface-panel" aria-labelledby="h-net">
+        <div class="panel-header">
+          <div>
+            <h2 class="panel-title" id="h-net">Freight network</h2>
+            <p class="panel-sub">Routes in the balanced plan from the optimisation model. Select a node for details.</p>
+          </div>
+          <div class="map-controls">
+            <div class="map-view-toggle-group">
+              <button id="btn-map-mode-world" class="map-mode-btn active">Chart</button>
+              <button id="btn-map-mode-grid" class="map-mode-btn">Grid</button>
+            </div>
+            <button id="map-zoom-in" class="map-ctrl-btn" aria-label="Zoom in">+</button>
+            <button id="map-zoom-out" class="map-ctrl-btn" aria-label="Zoom out">-</button>
+            <button id="map-zoom-reset" class="map-ctrl-btn">Reset</button>
+          </div>
+        </div>
+        <div class="network-container" id="network-map">
+          <div id="map-node-detail" class="map-detail-card" style="display: none;"></div>
+        </div>
+      </section>
+
+      <section class="surface-panel advanced-panel" aria-labelledby="h-corr">
+        <div class="panel-header">
+          <div>
+            <h2 class="panel-title" id="h-corr">Corridor performance</h2>
+            <p class="panel-sub">Mode, distance, annual flow and carbon intensity per corridor.</p>
+          </div>
+          <button id="export-corridors-btn" class="secondary-btn btn-small">Export CSV</button>
+        </div>
+        <div class="corridors-grid" id="corridors-grid"></div>
+      </section>
+
+      <section class="surface-panel advanced-panel" aria-labelledby="h-mode">
+        <h2 class="panel-title" id="h-mode">Carbon intensity by transport mode</h2>
+        <p class="panel-sub">Total CO2 and intensity across all corridors.</p>
+        <div class="chart-box chart-short" id="intermodal-carbon-chart"></div>
+      </section>
+    </section>
+
+    <section class="page-view" id="page-forecast">
+      <section class="surface-panel" aria-labelledby="h-lstm">
+        <div class="panel-header">
+          <div>
+            <h2 class="panel-title" id="h-lstm">Clean energy demand forecast</h2>
+            <p class="panel-sub">Synthetic 60-day history with a least-squares trend and seasonal forecast and its 80 percent interval, scaled by region; the scenario pills are what-if multipliers.</p>
+          </div>
+          <div class="forecast-toggles" id="forecast-scenario-toggles">
+            <button class="forecast-pill active" data-growth="baseline">Baseline</button>
+            <button class="forecast-pill" data-growth="accelerated">Accelerated</button>
+            <button class="forecast-pill" data-growth="conservative">Conservative</button>
+          </div>
+        </div>
+        <div class="chart-box" id="forecast-chart"></div>
+      </section>
+
+      <div class="forecast-split">
+        <section class="surface-panel" aria-labelledby="h-reg">
+          <h2 class="panel-title" id="h-reg">Demand by region</h2>
+          <p class="panel-sub">Renewable capacity demand per operating region, MW.</p>
+          <div class="chart-box" id="region-demand-chart"></div>
+        </section>
+
+        <section class="surface-panel advanced-panel" aria-labelledby="h-hubs">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title" id="h-hubs">Priority demand hubs</h2>
+              <p class="panel-sub">Utility-scale projects that need sustainable equipment.</p>
+            </div>
+            <button id="export-hubs-btn" class="secondary-btn btn-small">Export CSV</button>
+          </div>
+          <div class="hubs-list-container" id="hubs-roster"></div>
+        </section>
+      </div>
+    </section>
+
+    <section class="page-view" id="page-scenarios">
+      <section class="surface-panel advanced-panel" aria-labelledby="h-pareto">
+        <h2 class="panel-title" id="h-pareto">Cost and carbon trade-off</h2>
+        <p class="panel-sub">Efficient plans from the integrated optimisation model: each point is the cheapest plan under a CO2 cap (epsilon-constraint), network-wide. The balanced plan is chosen by TOPSIS with equal weights.</p>
+        <div class="chart-box" id="pareto-chart"></div>
+      </section>
+
+      <section class="surface-panel" aria-labelledby="h-sim">
+        <h2 class="panel-title" id="h-sim">Sourcing strategies</h2>
+        <p class="panel-sub">Representative plans from the optimisation model: cost, CO2e, social score, transport modes and the suppliers each plan contracts.</p>
+        <div class="scenario-panel">
+          <div class="scenario-selector-strip" id="scenario-selector">
+          </div>
+          <div class="scenario-detail-box" id="scenario-details"></div>
+        </div>
+      </section>
+
+      <section class="surface-panel advanced-panel" aria-labelledby="h-matrix">
+        <h2 class="panel-title" id="h-matrix">Strategy comparison</h2>
+        <p class="panel-sub">All strategies side by side for the selected regions.</p>
+        <div class="table-scroll">
+          <table class="app-table strategy-matrix-table">
+            <thead>
+              <tr><th>Strategy</th><th>Cost a year</th><th>CO2e a year</th><th>Transport modes</th><th>Description</th></tr>
+            </thead>
+            <tbody id="scenario-matrix-tbody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="surface-panel" aria-labelledby="h-risk">
+        <h2 class="panel-title" id="h-risk">Risk: planning under uncertainty</h2>
+        <p class="panel-sub">Two-stage stochastic model: supplier contracts and reserved tonnages are fixed before 20 sampled futures (regional demand swings, supplier outages, Red Sea and Hormuz closures); tonnages and modes then adapt in each. The robust plan is compared with a plan made for average demand. Unserved demand is charged at ten times the product price, so the gap mostly measures avoided shortfalls.</p>
+        <div class="scenario-stats-grid risk-grid" id="risk-stats"></div>
+        <div class="table-scroll">
+          <table class="app-table">
+            <thead><tr><th>Project</th><th>Robust plan: futures short</th><th>Mean-demand plan: futures short</th></tr></thead>
+            <tbody id="risk-tbody"></tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+  </main>
+</div>
+
+<script src="../data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "name": "cairn",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sustainable supplier selection and transport network model with teaching games and a decision suite",
+  "scripts": {
+    "start": "python run.py",
+    "build-data": "python model/build_data.py",
+    "test": "node tests/run.js",
+    "test:model": "python model/test_model.py"
+  },
+  "devDependencies": {
+    "axe-core": "^4.10.3",
+    "playwright-core": "^1.56.1"
+  }
+}

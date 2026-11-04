@@ -1,0 +1,27 @@
+const { chromium } = require('playwright-core');
+const assert = require('assert');
+(async () => {
+  const b = await chromium.launch({ channel: 'chrome', headless: true });
+  const p = await b.newPage({ viewport: { width: 1440, height: 900 }, colorScheme: 'dark' });
+  const errs = []; p.on('pageerror', e => errs.push(e.message)); p.on('console', m => { if (m.type() === 'error') errs.push(m.text()) });
+  await p.goto('http://127.0.0.1:8765/greenchainml/index.html', { waitUntil: 'networkidle' });
+  await p.click('.nav-item[data-target="page-suppliers"]').catch(async () => { await p.click('text=Suppliers'); });
+  await p.waitForTimeout(600);
+  await p.click('#ahp summary');
+  const set = async (k, v) => p.$eval('#ahp-' + k, (el, v) => { el.value = v; el.dispatchEvent(new Event('input', { bubbles: true })); }, v);
+  await set(0, -4); await set(3, -4); await set(1, 4);
+  const bad = await p.textContent('#ahp-out'); console.log('contradictory:', bad.replace(/\s+/g, ' ').slice(-150));
+  assert.equal(await p.isDisabled('#btn-ahp-apply'), true, 'apply disabled when inconsistent');
+  assert.equal(await p.$$eval('#ahp-pairs input', n => n.length), 6, 'four criteria give six comparisons');
+  const plan = [0, -2, 0, -2, 0, 2]; for (let k = 0; k < 6; k++) await set(k, plan[k]);
+  assert.equal(await p.isDisabled('#btn-ahp-apply'), false, 'consistent set enables apply');
+  const good = await p.textContent('#ahp-out'); console.log('consistent:', good.replace(/\s+/g, ' '));
+  assert.match(good, /Consistency ratio 0\.000/, 'a fully consistent set has CR 0');
+  const before = await p.$eval('#suppliers-tbody tr td:nth-child(2), table tbody tr td:nth-child(2)', e => e.textContent).catch(() => '?');
+  await p.click('#btn-ahp-apply'); await p.waitForTimeout(400);
+  const after = await p.$eval('#suppliers-tbody tr td:nth-child(2), table tbody tr td:nth-child(2)', e => e.textContent).catch(() => '?');
+  console.log('top supplier before/after', before.trim(), '|', after.trim(), '| co2 slider', await p.$eval('#sl-co2', e => e.value));
+  await p.screenshot({ path: __dirname + '/shots/ahp.png', fullPage: false });
+  console.log('errors', JSON.stringify(errs)); assert.equal(errs.length, 0);
+  await b.close(); console.log('AHP OK');
+})().catch(e => { console.error('FAIL', e.message); process.exit(1); });

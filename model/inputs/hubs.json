@@ -1,0 +1,231 @@
+[
+ {
+  "id": "DEM_MBR6",
+  "name": "MBR Solar Park Phase 6",
+  "country": "UAE",
+  "region": "UAE",
+  "lat": 24.75,
+  "lon": 55.37,
+  "capacity_mw": {
+   "pv": 1800
+  },
+  "src": "Masdar project page; MEED (1,800 MW, Saih Al-Dahal)"
+ },
+ {
+  "id": "DEM_DHAFRA",
+  "name": "Al Dhafra Solar PV",
+  "country": "UAE",
+  "region": "UAE",
+  "lat": 24.12,
+  "lon": 54.55,
+  "capacity_mw": {
+   "pv": 2000
+  },
+  "src": "NS Energy, Nov 2023 (2 GW)"
+ },
+ {
+  "id": "DEM_NOOR_AD",
+  "name": "Noor Abu Dhabi",
+  "country": "UAE",
+  "region": "UAE",
+  "lat": 24.47,
+  "lon": 55.34,
+  "capacity_mw": {
+   "pv": 1177
+  },
+  "src": "Guinness World Records (1,177 MW)"
+ },
+ {
+  "id": "DEM_KHAZNA",
+  "name": "Khazna Solar PV",
+  "country": "UAE",
+  "region": "UAE",
+  "lat": 24.2,
+  "lon": 55.1,
+  "capacity_mw": {
+   "pv": 1500
+  },
+  "src": "WAM (1.5 GW AC)"
+ },
+ {
+  "id": "DEM_SUDAIR",
+  "name": "Sudair Solar PV",
+  "country": "Saudi Arabia",
+  "region": "Middle East",
+  "lat": 25.45,
+  "lon": 45.6,
+  "capacity_mw": {
+   "pv": 1500
+  },
+  "src": "Argaam, Gulf Construction Online (1,500 MW)"
+ },
+ {
+  "id": "DEM_KHARSAAH",
+  "name": "Al Kharsaah Solar PV",
+  "country": "Qatar",
+  "region": "Middle East",
+  "lat": 25.24,
+  "lon": 51.06,
+  "capacity_mw": {
+   "pv": 800
+  },
+  "src": "Enerdata (800 MW)"
+ },
+ {
+  "id": "DEM_NEOM",
+  "name": "NEOM Green Hydrogen renewables",
+  "country": "Saudi Arabia",
+  "region": "Middle East",
+  "lat": 27.95,
+  "lon": 35.3,
+  "capacity_mw": {
+   "pv": 2200,
+   "wind": 1600
+  },
+  "src": "Waterstofnet (2.2 GW solar, 1.6 GW wind; secondary)"
+ },
+ {
+  "id": "DEM_REDSEA",
+  "name": "Red Sea destination solar",
+  "country": "Saudi Arabia",
+  "region": "Middle East",
+  "lat": 25.6,
+  "lon": 36.95,
+  "capacity_mw": {
+   "pv": 340
+  },
+  "src": "PV Tech (340 MWac)"
+ },
+ {
+  "id": "DEM_WITZNITZ",
+  "name": "Witznitz Energy Park",
+  "country": "Germany",
+  "region": "Europe",
+  "lat": 51.15,
+  "lon": 12.4,
+  "capacity_mw": {
+   "pv": 605
+  },
+  "src": "TaiyangNews (605 MW)"
+ },
+ {
+  "id": "DEM_NUNEZ",
+  "name": "Nunez de Balboa PV",
+  "country": "Spain",
+  "region": "Europe",
+  "lat": 38.39,
+  "lon": -6.1,
+  "capacity_mw": {
+   "pv": 500
+  },
+  "src": "Iberdrola (500 MWp)"
+ },
+ {
+  "id": "DEM_DOGGER",
+  "name": "Dogger Bank Wind Farm",
+  "country": "UK",
+  "region": "Europe",
+  "lat": 54.8,
+  "lon": 1.9,
+  "capacity_mw": {
+   "wind": 3600
+  },
+  "src": "Equinor / Hydro International (3 x 1.2 GW)"
+ },
+ {
+  "id": "DEM_BHADLA",
+  "name": "Bhadla Solar Park",
+  "country": "India",
+  "region": "Asia Pacific",
+  "lat": 27.53,
+  "lon": 71.91,
+  "capacity_mw": {
+   "pv": 2245
+  },
+  "src": "Bhadla Solar Park (2,245 MW)"
+ },
+ {
+  "id": "DEM_AKITA",
+  "name": "Akita and Noshiro offshore wind",
+  "country": "Japan",
+  "region": "Asia Pacific",
+  "lat": 40.0,
+  "lon": 140.0,
+  "capacity_mw": {
+   "wind": 140
+  },
+  "src": "Maritime Executive (33 x 4.2 MW)"
+ },
+ {
+  "id": "DEM_EDWARDS",
+  "name": "Edwards and Sanborn Solar",
+  "country": "USA",
+  "region": "Americas",
+  "lat": 35.0,
+  "lon": -118.0,
+  "capacity_mw": {
+   "pv": 807
+  },
+  "src": "Terra-Gen (807 MW solar)"
+ },
+ {
+  "id": "DEM_SAMSON",
+  "name": "Samson Solar Energy Center",
+  "country": "USA",
+  "region": "Americas",
+  "lat": 33.66,
+  "lon": -95.6,
+  "capacity_mw": {
+   "pv": 1310
+  },
+  "src": "IPP Journal (1,310 MW)"
+ },
+ {
+  "id": "DEM_EMPIRE",
+  "name": "Empire Wind 1",
+  "country": "USA",
+  "region": "Americas",
+  "lat": 40.3,
+  "lon": -73.4,
+  "capacity_mw": {
+   "wind": 810
+  },
+  "src": "NYSERDA contract (810 MW)"
+ },
+ {
+  "id": "DEM_LAGOA",
+  "name": "Lagoa dos Ventos I and II",
+  "country": "Brazil",
+  "region": "Americas",
+  "lat": -8.48,
+  "lon": -41.53,
+  "capacity_mw": {
+   "wind": 716
+  },
+  "src": "Enerdata (716 MW)"
+ },
+ {
+  "id": "DEM_BENBAN",
+  "name": "Benban Solar Park",
+  "country": "Egypt",
+  "region": "Africa",
+  "lat": 24.45,
+  "lon": 32.73,
+  "capacity_mw": {
+   "pv": 1650
+  },
+  "src": "Benban Solar Park (1,650 MW nominal)"
+ },
+ {
+  "id": "DEM_TURKANA",
+  "name": "Lake Turkana Wind Power",
+  "country": "Kenya",
+  "region": "Africa",
+  "lat": 2.5,
+  "lon": 36.8,
+  "capacity_mw": {
+   "wind": 310
+  },
+  "src": "Engineering News (310 MW)"
+ }
+]

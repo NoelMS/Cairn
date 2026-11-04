@@ -1,0 +1,572 @@
+[
+ {
+  "id": "SUP_JINKO",
+  "name": "JinkoSolar",
+  "category": "modules",
+  "location": "Shangrao, Jiangxi",
+  "country": "China",
+  "region": "Asia Pacific",
+  "lat": 28.45,
+  "lon": 117.94,
+  "price_key": "modules_cn",
+  "carbon": {
+   "kg_per_kwp": 412,
+   "basis": "category value: c-Si module made on the Chinese average grid (bifacial PERC)",
+   "src": "S_YUAN",
+   "specific": false
+  },
+  "social": {
+   "iso45001": 0.5,
+   "ungc": 1,
+   "injury": null,
+   "audit": 0,
+   "forced_labour_flag": 1,
+   "src": "S_JINKO; S_UNGC (joined 2021); S_SHU"
+  },
+  "note": null
+ },
+ {
+  "id": "SUP_LONGI",
+  "name": "LONGi Green Energy",
+  "category": "modules",
+  "location": "Xi'an, Shaanxi",
+  "country": "China",
+  "region": "Asia Pacific",
+  "lat": 34.34,
+  "lon": 108.94,
+  "price_key": "modules_cn",
+  "carbon": {
+   "kg_per_kwp": 412,
+   "basis": "category value: c-Si module made on the Chinese average grid (bifacial PERC)",
+   "src": "S_YUAN",
+   "specific": false
+  },
+  "social": {
+   "iso45001": 1,
+   "ungc": 1,
+   "injury": null,
+   "audit": 0,
+   "forced_labour_flag": 1,
+   "src": "S_LONGI (secondary); S_UNGC (joined 2019); S_SHU"
+  },
+  "note": null
+ },
+ {
+  "id": "SUP_TRINA",
+  "name": "Trina Solar",
+  "category": "modules",
+  "location": "Changzhou, Jiangsu",
+  "country": "China",
+  "region": "Asia Pacific",
+  "lat": 31.81,
+  "lon": 119.97,
+  "price_key": "modules_cn",
+  "carbon": {
+   "kg_per_kwp": 412,
+   "basis": "category value: c-Si module made on the Chinese average grid (bifacial PERC)",
+   "src": "S_YUAN",
+   "specific": false
+  },
+  "social": {
+   "iso45001": 0,
+   "ungc": 1,
+   "injury": null,
+   "audit": 1,
+   "forced_labour_flag": 1,
+   "src": "S_TRINA (SA8000); S_UNGC (joined 2024); S_SHU"
+  },
+  "note": null
+ },
+ {
+  "id": "SUP_QCELLS",
+  "name": "Hanwha Qcells",
+  "category": "modules",
+  "location": "Jincheon",
+  "country": "South Korea",
+  "region": "Asia Pacific",
+  "lat": 36.86,
+  "lon": 127.44,
+  "price_key": "modules_cn",
+  "carbon": {
+   "kg_per_kwp": 412,
+   "basis": "category value applied (no product footprint found for Qcells)",
+   "src": "S_YUAN",
+   "specific": false
+  },
+  "social": {
+   "iso45001": 0,
+   "ungc": 0,
+   "injury": null,
+   "audit": 0,
+   "forced_labour_flag": 0,
+   "src": "none found in this review"
+  },
+  "note": "Korean plant; China FOB price used as the regional module price"
+ },
+ {
+  "id": "SUP_FIRST_SOLAR",
+  "name": "First Solar",
+  "category": "modules",
+  "location": "Perrysburg, Ohio",
+  "country": "USA",
+  "region": "Americas",
+  "lat": 41.55,
+  "lon": -83.63,
+  "price_key": "modules_us",
+  "carbon": {
+   "kg_per_kwp": 400,
+   "basis": "upper bound: EPEAT Climate+ certified (400 kg CO2e/kWp or less)",
+   "src": "S_EPEAT",
+   "specific": true
+  },
+  "social": {
+   "iso45001": 0,
+   "ungc": 0,
+   "injury": null,
+   "audit": 1,
+   "forced_labour_flag": 0,
+   "src": "S_FSLR (RBA VAP Platinum); not in S_UNGC"
+  },
+  "note": null
+ },
+ {
+  "id": "SUP_ADANI",
+  "name": "Adani Solar (Adani Enterprises)",
+  "category": "modules",
+  "location": "Mundra, Gujarat",
+  "country": "India",
+  "region": "Asia Pacific",
+  "lat": 22.84,
+  "lon": 69.72,
+  "price_key": "modules_cn",
+  "carbon": {
+   "kg_per_kwp": 412,
+   "basis": "category value applied (no product footprint found for Adani Solar)",
+   "src": "S_YUAN",
+   "specific": false
+  },
+  "social": {
+   "iso45001": 0,
+   "ungc": 0,
+   "injury": null,
+   "audit": 0,
+   "forced_labour_flag": 0,
+   "src": "none found in this review; Adani Enterprises not in S_UNGC"
+  },
+  "note": "China FOB price used as the regional module price"
+ },
+ {
+  "id": "SUP_EMSTEEL",
+  "name": "EMSTEEL",
+  "category": "steel",
+  "location": "Mussafah, Abu Dhabi",
+  "country": "UAE",
+  "region": "UAE",
+  "lat": 24.35,
+  "lon": 54.5,
+  "price_key": "steel_asia",
+  "carbon": {
+   "t_per_t": 0.637,
+   "basis": "Scope 1+2 intensity of steel production, 2025 (DRI-EAF)",
+   "src": "S_EMSTEEL25 p.19",
+   "specific": true
+  },
+  "social": {
+   "iso45001": 1,
+   "ungc": 0,
+   "injury": {
+    "type": "LTIFR",
+    "value": 0.0
+   },
+   "audit": 0,
+   "forced_labour_flag": 0,
+   "src": "S_EMSTEEL25 pp.29, 37; not in S_UNGC"
+  },
+  "note": "Asian export HRC price used as the Gulf price"
+ },
+ {
+  "id": "SUP_SSAB",
+  "name": "SSAB",
+  "category": "steel",
+  "location": "Lulea",
+  "country": "Sweden",
+  "region": "Europe",
+  "lat": 65.58,
+  "lon": 22.15,
+  "price_key": "steel_eu",
+  "carbon": {
+   "t_per_t": 1.462,
+   "basis": "(Scope 1 9,483 kt + Scope 2 1,260 kt) / crude steel 7,349 kt, 2024",
+   "src": "S_SSAB24 p.68",
+   "specific": true
+  },
+  "social": {
+   "iso45001": 1,
+   "ungc": 1,
+   "injury": {
+    "type": "LTIF",
+    "value": 0.75
+   },
+   "audit": 1,
+   "forced_labour_flag": 0,
+   "src": "S_SSAB24 pp.8-9 (UNGC, LTIF 0.75, EcoVadis gold), S1 (ISO 45001 all sites)"
+  },
+  "note": null
+ },
+ {
+  "id": "SUP_TATA_NL",
+  "name": "Tata Steel Nederland",
+  "category": "steel",
+  "location": "IJmuiden",
+  "country": "Netherlands",
+  "region": "Europe",
+  "lat": 52.47,
+  "lon": 4.6,
+  "price_key": "steel_eu",
+  "carbon": {
+   "t_per_t": 1.743,
+   "basis": "Scope 1 baseline 12.6 Mt CO2 at 7.23 Mt crude steel capacity (Scope 1 only)",
+   "src": "S_TATANL25 p.27",
+   "specific": true
+  },
+  "social": {
+   "iso45001": 0.5,
+   "ungc": 0.5,
+   "injury": {
+    "type": "LTIF",
+    "value": 1.43
+   },
+   "audit": 0,
+   "forced_labour_flag": 0,
+   "src": "S_TATANL25 pp.46-47 (18 of 22 sites ISO 45001; LTIF 1.43); parent Tata Steel in S_UNGC"
+  },
+  "note": null
+ },
+ {
+  "id": "SUP_EGA",
+  "name": "Emirates Global Aluminium",
+  "category": "aluminium",
+  "location": "Jebel Ali, Dubai",
+  "country": "UAE",
+  "region": "UAE",
+  "lat": 25.01,
+  "lon": 55.08,
+  "price_key": "aluminium",
+  "carbon": {
+   "t_per_t": 7.57,
+   "basis": "Scope 1+2 GHG intensity of UAE metal, 2024",
+   "src": "S_EGA24 (GHG emissions: smelting)",
+   "specific": true
+  },
+  "social": {
+   "iso45001": 1,
+   "ungc": 0,
+   "injury": {
+    "type": "LTIFR",
+    "value": 0.05
+   },
+   "audit": 1,
+   "forced_labour_flag": 0,
+   "src": "S_EGA24 (ISO 45001:2018, UAE LTIFR 0.05, ASI Performance Standard); not in S_UNGC"
+  },
+  "note": null
+ },
+ {
+  "id": "SUP_MAADEN",
+  "name": "Ma'aden Aluminium",
+  "category": "aluminium",
+  "location": "Ras Al Khair",
+  "country": "Saudi Arabia",
+  "region": "Middle East",
+  "lat": 27.53,
+  "lon": 49.23,
+  "price_key": "aluminium",
+  "carbon": {
+   "t_per_t": 9.41,
+   "basis": "smelter GHG intensity, liquid aluminium, 2024 (ASI 5.2A)",
+   "src": "S_MAADEN24 p.64",
+   "specific": true
+  },
+  "social": {
+   "iso45001": 1,
+   "ungc": 1,
+   "injury": null,
+   "audit": 1,
+   "forced_labour_flag": 0,
+   "src": "S_MAADEN24 p.24 (ISO 45001), ASI certified; S_UNGC (joined 2023)"
+  },
+  "note": null
+ },
+ {
+  "id": "SUP_HYDRO",
+  "name": "Norsk Hydro",
+  "category": "aluminium",
+  "location": "Sunndalsora",
+  "country": "Norway",
+  "region": "Europe",
+  "lat": 62.68,
+  "lon": 8.55,
+  "price_key": "aluminium",
+  "carbon": {
+   "t_per_t": 4.0,
+   "basis": "certified footprint of Hydro primary aluminium, below 4 kg CO2e/kg (upper bound)",
+   "src": "S_HYDRO24 p.16",
+   "specific": true
+  },
+  "social": {
+   "iso45001": 1,
+   "ungc": 1,
+   "injury": {
+    "type": "TRI",
+    "value": 2.0
+   },
+   "audit": 0,
+   "forced_labour_flag": 0,
+   "src": "S_HYDRO24 p.5 (TRI 2.0), ISO 45001 certificate; S_UNGC (joined 2000)"
+  },
+  "note": null
+ },
+ {
+  "id": "SUP_DUCAB",
+  "name": "Ducab",
+  "category": "copper",
+  "location": "Jebel Ali, Dubai",
+  "country": "UAE",
+  "region": "UAE",
+  "lat": 24.98,
+  "lon": 55.1,
+  "price_key": "copper",
+  "carbon": {
+   "t_per_t": 3.965,
+   "basis": "category value: global copper cathode cradle-to-gate (cable processing not included)",
+   "src": "S_ICA",
+   "specific": false
+  },
+  "social": {
+   "iso45001": 0,
+   "ungc": 0,
+   "injury": null,
+   "audit": 0,
+   "forced_labour_flag": 0,
+   "src": "none found in this review"
+  },
+  "note": null
+ },
+ {
+  "id": "SUP_ELSEWEDY",
+  "name": "Elsewedy Electric",
+  "category": "copper",
+  "location": "10th of Ramadan City",
+  "country": "Egypt",
+  "region": "Africa",
+  "lat": 30.29,
+  "lon": 31.75,
+  "price_key": "copper",
+  "carbon": {
+   "t_per_t": 3.965,
+   "basis": "category value: global copper cathode cradle-to-gate (cable processing not included)",
+   "src": "S_ICA",
+   "specific": false
+  },
+  "social": {
+   "iso45001": 0,
+   "ungc": 1,
+   "injury": null,
+   "audit": 0,
+   "forced_labour_flag": 0,
+   "src": "S_UNGC (joined 2018); ISO 45001 claim found only for 2020"
+  },
+  "note": null
+ },
+ {
+  "id": "SUP_NKT",
+  "name": "NKT",
+  "category": "copper",
+  "location": "Karlskrona",
+  "country": "Sweden",
+  "region": "Europe",
+  "lat": 56.16,
+  "lon": 15.59,
+  "price_key": "copper",
+  "carbon": {
+   "t_per_t": 3.965,
+   "basis": "category value: global copper cathode cradle-to-gate (cable processing not included)",
+   "src": "S_ICA",
+   "specific": false
+  },
+  "social": {
+   "iso45001": 0,
+   "ungc": 1,
+   "injury": null,
+   "audit": 0,
+   "forced_labour_flag": 0,
+   "src": "S_UNGC (joined 2009)"
+  },
+  "note": null
+ },
+ {
+  "id": "SUP_PRYSMIAN",
+  "name": "Prysmian",
+  "category": "copper",
+  "location": "Pignataro Maggiore",
+  "country": "Italy",
+  "region": "Europe",
+  "lat": 41.19,
+  "lon": 14.17,
+  "price_key": "copper",
+  "carbon": {
+   "t_per_t": 3.965,
+   "basis": "category value: global copper cathode cradle-to-gate (cable processing not included)",
+   "src": "S_ICA",
+   "specific": false
+  },
+  "social": {
+   "iso45001": 0.5,
+   "ungc": 1,
+   "injury": {
+    "type": "LTIF",
+    "value": 1.07
+   },
+   "audit": 0,
+   "forced_labour_flag": 0,
+   "src": "S_PRYSMIAN; S_UNGC (joined 2021)"
+  },
+  "note": null
+ },
+ {
+  "id": "SUP_NEXANS",
+  "name": "Nexans Maroc",
+  "category": "copper",
+  "location": "Mohammedia",
+  "country": "Morocco",
+  "region": "Africa",
+  "lat": 33.69,
+  "lon": -7.39,
+  "price_key": "copper",
+  "carbon": {
+   "t_per_t": 3.965,
+   "basis": "category value: global copper cathode cradle-to-gate (cable processing not included)",
+   "src": "S_ICA",
+   "specific": false
+  },
+  "social": {
+   "iso45001": 0,
+   "ungc": 0.5,
+   "injury": null,
+   "audit": 0,
+   "forced_labour_flag": 0,
+   "src": "parent Nexans in S_UNGC (joined 2008)"
+  },
+  "note": "Moroccan subsidiary; social indicators of the Nexans group"
+ },
+ {
+  "id": "SUP_VESTAS",
+  "name": "Vestas",
+  "category": "turbine",
+  "location": "Aarhus",
+  "country": "Denmark",
+  "region": "Europe",
+  "lat": 56.16,
+  "lon": 10.2,
+  "price_key": "turbine",
+  "carbon": {
+   "g_per_usd": 5.607,
+   "basis": "Scope 1+2 0.105 Mt / revenue EUR 17.3bn, 2024 (spend-based)",
+   "src": "S_VESTAS_FY24",
+   "specific": true
+  },
+  "social": {
+   "iso45001": 0,
+   "ungc": 1,
+   "injury": {
+    "type": "TRI",
+    "value": 3.0
+   },
+   "audit": 0,
+   "forced_labour_flag": 0,
+   "src": "S_VESTAS_FY24 (TRIR 3.0); S_UNGC (joined 2009)"
+  },
+  "note": null
+ },
+ {
+  "id": "SUP_GEV",
+  "name": "GE Vernova",
+  "category": "turbine",
+  "location": "Pensacola, Florida",
+  "country": "USA",
+  "region": "Americas",
+  "lat": 30.45,
+  "lon": -87.22,
+  "price_key": "turbine",
+  "carbon": {
+   "g_per_usd": 12.27,
+   "basis": "Scope 1+2 market-based 428,213 t / revenue USD 34.9bn, 2024 (spend-based)",
+   "src": "S_GEV",
+   "specific": true
+  },
+  "social": {
+   "iso45001": 0,
+   "ungc": 1,
+   "injury": null,
+   "audit": 0,
+   "forced_labour_flag": 0,
+   "src": "S_UNGC (joined 2024)"
+  },
+  "note": null
+ },
+ {
+  "id": "SUP_SGRE",
+  "name": "Siemens Gamesa",
+  "category": "turbine",
+  "location": "Zamudio, Bilbao",
+  "country": "Spain",
+  "region": "Europe",
+  "lat": 43.28,
+  "lon": -2.87,
+  "price_key": "turbine",
+  "carbon": {
+   "g_per_usd": null,
+   "basis": "not disclosed separately; category median used",
+   "src": "S_SIEMENS_E",
+   "specific": false
+  },
+  "social": {
+   "iso45001": 0,
+   "ungc": 0.5,
+   "injury": {
+    "type": "LTIFR",
+    "value": 1.27
+   },
+   "audit": 0,
+   "forced_labour_flag": 0,
+   "src": "S_SIEMENS_E (parent group LTIFR 1.27); parent Siemens Energy in S_UNGC"
+  },
+  "note": null
+ },
+ {
+  "id": "SUP_GOLDWIND",
+  "name": "Goldwind",
+  "category": "turbine",
+  "location": "Beijing",
+  "country": "China",
+  "region": "Asia Pacific",
+  "lat": 39.9,
+  "lon": 116.4,
+  "price_key": "turbine",
+  "carbon": {
+   "g_per_usd": null,
+   "basis": "reports operational carbon neutrality without usable absolute figures; category median used",
+   "src": "Goldwind 2024 Sustainability Report",
+   "specific": false
+  },
+  "social": {
+   "iso45001": 0,
+   "ungc": 1,
+   "injury": null,
+   "audit": 0,
+   "forced_labour_flag": 0,
+   "src": "S_UNGC (joined 2021)"
+  },
+  "note": null
+ }
+]

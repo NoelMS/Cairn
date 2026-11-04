@@ -1,0 +1,11 @@
+node_modules/
+tests/shots/
+__pycache__/
+*.pyc
+graphify-out/
+*.lnk
+.venv/
+.env
+*.log
+agent_handoff.md
+STYLEGUIDE.md
