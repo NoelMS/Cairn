@@ -11,12 +11,11 @@ Cairn models and optimizes the global supply chain for 19 utility-scale renewabl
 
 ---
 
-## Visual Overview & Tour
-
 https://github.com/user-attachments/assets/demo (Video preview: see `docs/brag.mp4` / `intro.mp4`)
 
-![Cairn Hub](docs/screenshots/01-hub.png)
-*Figure 1: Cairn Hub — supply network topology, Pareto optimal allocations, and multi-pillar trade-offs.*
+![Cairn Supply Network Optimization and Scenario Lab Walkthrough](docs/screenshots/demo.gif)
+
+*Live decision platform: multi-objective Pareto frontier trade-offs, interactive scenario stress-testing, and fleet vehicle routing across global renewable assets.*
 
 ---
 
